@@ -53,7 +53,7 @@ const Chatbot = ({ forceOpen = false, onClose }) => {
 
     // API Call
     try {
-        const API_KEY = "AIzaSyBrIW5XuwS4BNcwcMUzxclDZc6XPmVTF40"; 
+        const API_KEY = ""; 
         const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
         
         const apiResponse = await fetch(API_URL, {
