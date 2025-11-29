@@ -52,28 +52,28 @@ const Chatbot = ({ forceOpen = false, onClose }) => {
     }
 
     // API Call
-    try {
-        const API_KEY = "AIzaSyBrIW5XuwS4BNcwcMUzxclDZc6XPmVTF40"; 
-        const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+  //   try {
+  //       const API_KEY = "AIzaSyC9HemCJFJ_bt1yae_nFiBHghhD7fGOJIE"; 
+  //       const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
         
-        const apiResponse = await fetch(API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                contents: [{ parts: [{ text: userMsg }] }]
-            })
-        });
+  //       const apiResponse = await fetch(API_URL, {
+  //           method: "POST",
+  //           headers: { "Content-Type": "application/json" },
+  //           body: JSON.stringify({
+  //               contents: [{ parts: [{ text: userMsg }] }]
+  //           })
+  //       });
         
-        const data = await apiResponse.json();
-        const botResponseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, "$1").trim();
+  //       const data = await apiResponse.json();
+  //       const botResponseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, "$1").trim();
 
-        setMessages(prev => [...prev, { role: 'bot', text: botResponseText }]);
-    } catch (error) {
-        setMessages(prev => [...prev, { role: 'bot', text: "Oops! Something went wrong." }]);
-    } finally {
-        setIsThinking(false);
-    }
-  };
+  //       setMessages(prev => [...prev, { role: 'bot', text: botResponseText }]);
+  //   } catch (error) {
+  //       setMessages(prev => [...prev, { role: 'bot', text: "Oops! Something went wrong." }]);
+  //   } finally {
+  //       setIsThinking(false);
+  //   }
+  // };
 
   const effectiveOpen = forceOpen ? true : isOpen;
 
