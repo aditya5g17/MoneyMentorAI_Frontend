@@ -20,7 +20,7 @@ function App() {
     y:0,
   })
 
-  const mouse = useEffect(()=>{
+  useEffect(()=>{
     const handleMouseMove = e => {
       setMousePointer({
         x:e.clientX,
@@ -55,53 +55,103 @@ function App() {
       opacity: 1,
       filter: 'blur(80px)',
       pointerEvents: 'none',
-      transition: 'top 0.03s linear, left 0.03s linear',
+      transition: 'top 0.01s linear, left 0.01s linear',
   }
 
   const [chatBotEnabled, setChatBotEnabled] = useState(false);
+  const [showNews, setShowNews] = useState(false);
   return (
     <div className=' font-[Poppins] '>
       <div className='' style={cursor}></div>
       <div className='bg-no-repeat bg-cover  bg-[url("https://media.istockphoto.com/id/2030192156/photo/global-data-flow-and-connectivity-east-asia.webp?b=1&s=612x612&w=0&k=20&c=igZA6fE1A6qq0jyHDRUAxtbuHeQu2pqiRTdr4t2BPfI=")]'>
         <div className=''>
-          <Navbar homeRef={homeRef} workRef={workRef} aboutusRef={aboutusRef} featuresRef={featuresRef} faqRef={faqRef} /> 
+          <Navbar homeRef={homeRef} workRef={workRef} aboutusRef={aboutusRef} featuresRef={featuresRef} faqRef={faqRef} marketNewsRef={marketNewsRef} /> 
         </div>        
-        <div id='homeRef' ref={homeRef}><HeroSection />
+        <div id='homeRef' ref={homeRef}><HeroSection marketNewsRef={marketNewsRef} setShowNews={setShowNews} />
         </div>
       </div>
 
       <motion.button
-
-      animate={{x:[0,5,10]}}
-      transition={{duration:Infinity}}
-
-      className=' w-fit z-99 cursor-pointer hover:scale-110 transition-transform fixed bottom-[20px] right-[10px] drop-shadow-[0px_0px_10px_rgba(31,41,55,0.6)] text-white'
-      onClick={ () =>  setChatBotEnabled (true)}
+        animate={{ 
+          scale: [1, 1.08, 1],
+        }}
+        transition={{ 
+          duration: 2.5,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        style={{
+          position: 'fixed',
+          bottom: '24px',
+          right: '24px',
+          zIndex: 9998
+        }}
+        className='w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 text-white shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 flex items-center justify-center cursor-pointer group relative overflow-hidden'
+        onClick={() => setChatBotEnabled(true)}
+        aria-label="Open chat"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi text-3xl bi-alexa" viewBox="0 0 16 16">
-  <path d="M7.996 0A8 8 0 0 0 0 8a8 8 0 0 0 6.93 7.93v-1.613a1.06 1.06 0 0 0-.717-1.008A5.6 5.6 0 0 1 2.4 7.865 5.58 5.58 0 0 1 8.054 2.4a5.6 5.6 0 0 1 5.535 5.81l-.002.046-.012.192-.005.061a5 5 0 0 1-.033.284l-.01.068c-.685 4.516-6.564 7.054-6.596 7.068A7.998 7.998 0 0 0 15.992 8 8 8 0 0 0 7.996.001Z"/>
-</svg>
-</motion.button>  
+        {/* Animated background pulse */}
+        <motion.div
+          className="absolute inset-0 rounded-full bg-white opacity-20"
+          animate={{
+            scale: [1, 1.5, 1],
+            opacity: [0.2, 0, 0.2],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        {/* Robot face icon with eyes and smile */}
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width="32" 
+          height="32" 
+          viewBox="0 0 24 24"
+          className="relative z-10 group-hover:scale-110 transition-transform duration-300"
+          fill="none"
+        >
+          {/* Robot head */}
+          <rect x="4" y="6" width="16" height="12" rx="2.5" fill="white" stroke="none"/>
+          {/* Left eye - larger and friendly */}
+          <circle cx="9.5" cy="11" r="2.5" fill="white"/>
+          <circle cx="10" cy="10.5" r="1.3" fill="#3b82f6"/>
+          {/* Right eye - larger and friendly */}
+          <circle cx="14.5" cy="11" r="2.5" fill="white"/>
+          <circle cx="15" cy="10.5" r="1.3" fill="#3b82f6"/>
+          {/* Smile - curved and friendly */}
+          <path 
+            d="M 8.5 15.5 Q 12 18 15.5 15.5" 
+            stroke="#3b82f6" 
+            strokeWidth="2.5" 
+            strokeLinecap="round" 
+            fill="none"
+          />
+          {/* Antenna */}
+          <circle cx="12" cy="6" r="1" fill="white"/>
+          <line x1="12" y1="4" x2="12" y2="6" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+        </svg>
+      </motion.button>  
       {
         
         chatBotEnabled && 
-        ( <div className='h-[470px] rounded-lg shadow-2xl shadow-black w-[400px] bg-white z-999 fixed top-15 p-4 right-5'>
-          <button className='px-3 py-1 fixed top-6 cursor-pointer right-2 bg-black text-white rounded-full'
-          onClick={()=>setChatBotEnabled(false)}>X</button>
-          <Chatbot />
+        ( <div className='fixed' style={{ bottom: '20px', right: '24px', width: '420px', height: '550px', zIndex: 9999 }}>
+          <Chatbot forceOpen={true} onClose={() => setChatBotEnabled(false)} />
           </div>
         )
       }
 
       <div className='bg-gradient-to-b mt-0 from-[#0c121b] to-[rgb(31,41,55)]'>
         <div id='featuresRef' ref={featuresRef}><ChooseUs /></div>
-        {/* <div><News /></div> */}
+        {showNews && <News onClose={() => setShowNews(false)} />}
         <StatsSection />
         <div id='workRef' ref={workRef}><Work /></div>
         <div ref={faqRef} id='faqRef'><FAQSection /></div>
         <div id='aboutusRef' ref={aboutusRef}><Footer /></div>
       </div>
-      <Chatbot />
     </div>
   )
 }

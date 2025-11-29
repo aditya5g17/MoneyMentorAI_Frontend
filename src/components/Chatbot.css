@@ -47,14 +47,18 @@
     right: 35px;
     bottom: 90px;
     width: 420px;
-    background: white;
+    /* near-black solid background with slight translucency */
+    background: rgba(0, 0, 0, 0.96);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     overflow: hidden;
     border-radius: 15px;
     opacity: 0;
     transform: scale(0.2);
     transform-origin: bottom right;
     pointer-events: none;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.7);
+    border: 1px solid rgba(255,255,255,0.03);
     transition: all 0.1s ease;
     z-index: 10000;
 }
@@ -66,12 +70,46 @@
     transform: scale(1);
 }
 
+/* Embedded mode: when Chatbot is rendered inside a modal/container
+   we want the popup to fill the parent and behave like a rectangular panel */
+.chatbot-container.embedded-chat .chatbot-popup {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    box-shadow: none;
+    border-radius: inherit;
+    border: none;
+}
+
+.chatbot-container.embedded-chat .chat-body {
+    /* leave room for header and footer */
+    height: calc(100% - 130px);
+    margin-bottom: 100px;
+}
+
+.chatbot-container.embedded-chat .chat-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.chatbot-container.embedded-chat #chatbot-toggler {
+    display: none;
+}
+
 .chatbot-header {
     display: flex;
     align-items: center;
-    background: rgb(76, 73, 73);
+    /* header transparent as requested */
+    background: transparent;
     padding: 15px 22px;
     justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
 }
 
 .chatbot-header .header-info {
@@ -84,15 +122,15 @@
     height: 35px;
     width: 35px;
     padding: 6px;
-    fill: rgb(76, 73, 73);
+    fill: #fff;
     flex-shrink: 0;
-    background: white;
+    background: rgba(255,255,255,0.04);
     border-radius: 50%;
 }
 
 .header-info .logo-text {
     color: #fff;
-    font-size: 1.31rem;
+    font-size: 1.12rem;
     font-weight: 600;
 }
 
@@ -123,7 +161,9 @@
     overflow-y: auto;
     flex-direction: column;
     scrollbar-width: thin;
-    scrollbar-color: #ccccf5 transparent;
+    scrollbar-color: #666 transparent;
+    /* ensure messages sit on top of background */
+    position: relative;
 }
 
 .chat-body .message {
@@ -136,11 +176,11 @@
     height: 35px;
     width: 35px;
     padding: 6px;
-    fill: white;
+    fill: #fff;
     flex-shrink: 0;
     margin-bottom: 2px;
     align-self: flex-end;
-    background: rgb(76, 73, 73);
+    background: rgba(120,120,120,0.16);
     border-radius: 50%;
 }
 
@@ -160,14 +200,14 @@
 }
 
 .chat-body .bot-message .message-text {
-    background: #F2F2FF;
+    background: rgba(255,255,255,0.03); /* subtle light-on-black bubble */
     border-radius: 13px 13px 13px 3px;
-    color: black;
+    color: #dbeafe; /* soft light text */
 }
 
 .chat-body .user-message .message-text {
     color: #fff;
-    background: rgb(76, 73, 73);
+    background: linear-gradient(90deg, rgba(2,132,199,0.95), rgba(3,105,161,0.95));
     border-radius: 13px 13px 3px 13px;
 }
 
@@ -175,8 +215,10 @@
     position: absolute;
     bottom: 0%;
     width: 100%;
-    background: #fff;
+    /* dark translucent footer */
+    background: rgba(0,0,0,0.6);
     padding: 15px 22px 20px;
+    border-top: 1px solid rgba(255,255,255,0.02);
 }
 
 .chat-body .bot-message .thinking {

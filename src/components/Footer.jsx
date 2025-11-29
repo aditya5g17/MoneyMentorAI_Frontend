@@ -52,7 +52,7 @@ function Footer() {
             </div>
 
             <div>
-              <div className='mt-12 font-bold text-gray-300 text-3xl mx-auto text-center pt-30 '>Meet Our Team :)</div>
+              <div className='mt-12 font-bold text-gray-300 text-3xl mx-auto text-center pt-6 '>Meet Our Team :)</div>
               <div className='flex mt-12 font-bold max-w-[1080px] mx-auto justify-around'>
                 <p1> Arpit Bansal</p1>
                 <p1> Aman Rizvi </p1>

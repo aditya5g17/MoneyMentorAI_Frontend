@@ -17,13 +17,13 @@ const StatsSection = () => {
     transition={{duration:1.25, ease:'anticipate'}}>
         <div className='h-2 w-full border-b-[0.5px] border-b-[#374151]'></div>
       <div className="text-center mb-8 mt-22">
-        <h1 className="text-5xl text-[#F3F4F6] font-bold pt-20 ">Our Impact (Future Vision)</h1>
+        <h1 className="text-5xl text-[#F3F4F6] font-bold pt-6 ">Our Impact (Future Vision)</h1>
         <p className="text-gray-600 text-md mt-2">
           *Statistics below are for demonstration purposes only.*
         </p>
       </div>
 
-      <div className="flex justify-center flex-wrap pb-20 py-20">
+      <div className="flex justify-center flex-wrap pb-8 py-8">
         {inView && (
           <div className=" flex">
             <Counter target="500" label="Future Money Mentors Empowered" />

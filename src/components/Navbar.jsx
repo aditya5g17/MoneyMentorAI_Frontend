@@ -3,23 +3,21 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import MMLogo from '../assets/icons/MMLogo.png'
-import News from './News';
-
 const scroll = ( ref ) => {
-  ref.current.scrollIntoView({behavior:'smooth'});
+  if (!ref || !ref.current) return;
+  ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-function Navbar( {homeRef, workRef, aboutusRef, featuresRef, faqRef} ) {
+function Navbar( {homeRef, workRef, aboutusRef, featuresRef, faqRef, marketNewsRef} ) {
 
     const [isMoved, setIsMoved] = useState(false);
-    const [showNews, setShowNews] = useState(false);
   
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setIsMoved(true);
-      }, 1000); // Delay before moving to navbar
-      return () => clearTimeout(timer);
-    }, []);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsMoved(true);
+    }, 1000); // Delay before moving the logo into place
+    return () => clearTimeout(timer);
+  }, []);
   
 
   const { ref, inView } = useInView({
@@ -55,11 +53,11 @@ function Navbar( {homeRef, workRef, aboutusRef, featuresRef, faqRef} ) {
         <div className='#161B22  items-center rounded-full bg-slate-500 backdrop-blur-2xl w-[650px] text-[#E6EDF3]'>
           <ul className='flex  h-12  items-center rounded-full'>
             <li className='m-4 hover:scale-110 transition-transform ml-14 font-semibold cursor-pointer hover:underline' onClick={()=>scroll(homeRef)}>Home</li>
+            <li className='m-4 hover:scale-110 transition-transform font-semibold cursor-pointer hover:underline' onClick={() => scroll(marketNewsRef)}>News</li>
             <li className='m-4 hover:scale-110 transition-transform font-semibold cursor-pointer hover:underline' onClick={()=>scroll(featuresRef)} >Features</li>
             <li className='m-4 hover:scale-110 transition-transform font-semibold cursor-pointer hover:underline' onClick={()=>scroll(workRef)} >Work Flow</li>
             <li className='m-4 hover:scale-110 transition-transform font-semibold cursor-pointer hover:underline' onClick={()=>scroll(faqRef)} >FAQ'S</li>
-            <li className='m-4 hover:scale-110 transition-transform font-semibold cursor-pointer hover:underline' onClick={()=>scroll(aboutusRef)} >AboutUs</li>
-            <li className='m-4 hover:scale-110 transition-transform mr-14 font-semibold cursor-pointer hover:underline' onClick={() => setShowNews(true)}>News</li>
+            <li className='m-4 hover:scale-110 transition-transform mr-14 font-semibold cursor-pointer hover:underline' onClick={()=>scroll(aboutusRef)} >AboutUs</li>
           </ul>
         </div>
       </motion.div>
@@ -69,9 +67,7 @@ function Navbar( {homeRef, workRef, aboutusRef, featuresRef, faqRef} ) {
         transition={{duration:1.5,delay:2, ease:'easeInOut'}}
       >
       </motion.div>
-      <AnimatePresence>
-        {showNews && <News onClose={() => setShowNews(false)} />}
-      </AnimatePresence>
+      {/* News is handled by the HeroSection / App; Navbar now scrolls to the market news button */}
     </motion.div>
   );
 }

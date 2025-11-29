@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 
-function HeroSection() {
+function HeroSection({ marketNewsRef, setShowNews }) {
 
   const { ref, inView } = useInView ({
     triggerOnce:true,
@@ -20,7 +20,7 @@ function HeroSection() {
       opacity-[80%] border-b-[0.5px] border-[#374151] pb-10'
     >
       <div className="bg-[rgba(0,0,0,0.5)] rounded-2xl px-4 h-[100%] font-[Poppins] flex items-center justify-center flex-col mt-4">
-        <h1 className=" mt-4 pt-32 text-center text-6xl text-[#ffffff] font-bold">
+        <h1 className="mt-4 pt-8 text-center text-6xl text-[#ffffff] font-bold">
           Your AI-Powered Financial Guide
         </h1>
         <h3 className="text-center text-3xl pt-8 text-[#E6EDF3] font-bold">
@@ -83,7 +83,7 @@ function HeroSection() {
           className="ring-2 ring-[#9cafce] text-[#E6EDF3] transition-transform hover:scale-110 m-4 bg-[#3B82F6] px-12 py-3 rounded-2xl cursor-pointer text-center font-bold items-center text-base">
             Get Started
           </Link>
-          <button className="ring-2 ring-[#9cafce] text-[#E6EDF3] transition-transform hover:scale-110 m-4 bg-[#3B82F6] px-12 py-3 rounded-2xl cursor-pointer text-center font-bold items-center text-base">
+          <button ref={marketNewsRef} className="ring-2 ring-[#9cafce] text-[#E6EDF3] transition-transform hover:scale-110 m-4 bg-[#3B82F6] px-12 py-3 rounded-2xl cursor-pointer text-center font-bold items-center text-base" onClick={() => setShowNews(true)}>
             market News
           </button>
           </div>
