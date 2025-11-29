@@ -68,6 +68,13 @@
 }
 
 
+.chatbot-popup.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+/* Keep the old selector for backward compatibility */
 .show-chatbot .chatbot-popup {
     opacity: 1;
     pointer-events: auto;
