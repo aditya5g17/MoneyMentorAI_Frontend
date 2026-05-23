@@ -19,11 +19,15 @@ const Chatbot = ({ forceOpen = false, onClose }) => {
   };
 
 
-  useEffect(() => {
-    if (chatBodyRef.current) {
-      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
-    }
-  }, [messages, isOpen, isThinking]);
+    useEffect(() => {
+      if (chatBodyRef.current) {
+        // Always scroll to bottom, but with smooth behavior for new messages
+        chatBodyRef.current.scrollTo({
+          top: chatBodyRef.current.scrollHeight,
+          behavior: 'smooth',
+        });
+      }
+    }, [messages, isOpen, isThinking]);
 
  
   const isMentalHealthQuery = (msg) => {

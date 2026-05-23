@@ -137,7 +137,7 @@ function App() {
       </motion.button>  
       {
         chatBotEnabled && 
-        ( <div className='fixed' style={{ bottom: '20px', right: '24px', width: '420px', height: '550px', zIndex: 9999 }}>
+        ( <div className='fixed chatbot-shell' style={{ bottom: '20px', right: '24px', zIndex: 9999 }}>
           <Chatbot forceOpen={true} onClose={() => setChatBotEnabled(false)} />
           </div>
         )
