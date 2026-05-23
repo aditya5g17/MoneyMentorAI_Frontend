@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { app } from '../firebase/app.js';
+import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,12 +37,12 @@ function SignUp() {
   };
 
   return (
-    <div className=''>
-      <div className="p-2 mt-12">
-        <span className="transition-all duration-300 h-12 relative flex items-center justify-start space-x-2">
+    <div className='flex flex-col gap-5'>
+      <div className="flex flex-col gap-4 p-2 mt-8 sm:mt-10">
+        <span className="transition-all duration-300 relative flex items-center justify-start space-x-2">
           <i className="fa-solid fa-user py-2 px-2"></i>
           <input
-            className="w-[300px] py-2 px-2 rounded-xl text-lg bg-[#d6d1d1] mt-2"
+            className="w-full max-w-[360px] py-2 px-2 rounded-xl text-lg bg-[#d6d1d1]"
             type="text"
             placeholder="Username"
             value={username}
@@ -51,7 +53,7 @@ function SignUp() {
         <span className="relative flex items-center justify-start space-x-2">
           <i className="fa-solid fa-envelope py-2 px-2"></i>
           <input
-            className="w-[300px] py-2 px-2 rounded-xl text-lg bg-[#d6d1d1] mt-2"
+            className="w-full max-w-[360px] py-2 px-2 rounded-xl text-lg bg-[#d6d1d1]"
             type="email"
             placeholder="Email address"
             required
@@ -63,7 +65,7 @@ function SignUp() {
         <span className="relative flex items-center justify-start space-x-2">
           <i className="fa-solid fa-lock py-2 px-2 "></i>
           <input
-            className="w-[300px] py-2 px-2 rounded-xl text-lg bg-[#d6d1d1] mt-2"
+            className="w-full max-w-[360px] py-2 px-2 rounded-xl text-lg bg-[#d6d1d1]"
             type="password"
             placeholder="Password"
             required
@@ -75,17 +77,17 @@ function SignUp() {
 
       <button
         type="button"
-        className="ml-20 p-1 mb-2 absolute bottom-32 left-3 hover:scale-110 transition-transform duration-100 rounded-2xl bg-green-900 text-white mt-10 w-[30%]"
+        className="w-full max-w-[220px] p-3 mx-auto hover:scale-105 transition-transform duration-100 rounded-2xl bg-green-900 text-white"
         onClick={handleSignUp}
       >
         Continue
       </button>
 
-      <p className='text-center mt-16 font-bold fixed left-[610px] top-[200px]'>OR</p>
+      <p className='text-center font-bold'>OR</p>
 
       <button
         type="button"
-        className='mt-2 ml-20 text-xl fixed left-[600px] top-[220px] font-semibold text-violet-900 hover:underline cursor-pointer'
+        className='text-lg font-semibold text-violet-900 hover:underline cursor-pointer sm:text-xl'
         onClick={googleSignin}
       >
         Continue With Google
@@ -94,10 +96,10 @@ function SignUp() {
       <img
         src='https://cdn-icons-png.flaticon.com/256/2875/2875404.png'
         alt="Google Symbol"
-        className='w-24 mx-auto p-2 fixed left-[720px] top-[270px] pointer-events-none opacity-50'
+        className='w-20 mx-auto p-2 pointer-events-none opacity-50 sm:w-24'
       />
 
-      <div className='text-red-600 text-base p-4 mt-22 text-center'>
+      <div className='text-red-600 text-base p-4 text-center'>
         {errorMessage && <p>{errorMessage}</p>}
       </div>
     </div>

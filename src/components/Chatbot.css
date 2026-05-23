@@ -8,6 +8,8 @@
 .chatbot-shell {
     width: var(--chatbot-popup-width);
     height: var(--chatbot-popup-height);
+    right: 24px;
+    bottom: 20px;
 }
 
 .chatbot-container {
@@ -335,18 +337,23 @@
 
 @media (max-width: 520px) {
     :root {
-        --chatbot-popup-width: calc(100vw - 32px);
-        --chatbot-popup-height: min(500px, calc(100vh - 104px));
+        --chatbot-popup-width: calc(100vw - 24px);
+        --chatbot-popup-height: min(560px, calc(100dvh - 88px));
+    }
+
+    .chatbot-shell {
+        right: 12px;
+        bottom: 12px;
     }
 
     #chatbot-toggler {
-        right: 20px;
-        bottom: 20px;
+        right: 16px;
+        bottom: 16px;
     }
 
     .chatbot-popup {
-        right: 16px;
-        bottom: 80px;
+        right: 12px;
+        bottom: 76px;
         min-width: 0;
     }
 }

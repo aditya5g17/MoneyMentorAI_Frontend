@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 function FAQSection() {
@@ -41,7 +41,7 @@ function FAQSection() {
   })
 
     return (
-        <motion.section className='max-w-[1080px] mx-auto font-[Poppins] text-[#F3F4F6]'
+        <Motion.section className='max-w-[1080px] mx-auto px-4 font-[Poppins] text-[#F3F4F6]'
         ref= {ref}
     initial = {{opacity:0, scale:0.85}}
     animate = {inView ? { opacity:1, scale:1 } : {}}
@@ -52,8 +52,8 @@ function FAQSection() {
             <div>
             {
                 faqs.map((elem, idx) => (
-                    <div id={idx} className='ring-gray-700 justify-between  flex ring-2  px-5 py-3 items-center max-w-[800px] mx-auto rounded-2xl m-3 bg-gray-800'>
-                        <div>
+                    <div key={idx} className='ring-gray-700 justify-between flex gap-4 ring-2 px-4 py-3 items-start max-w-[800px] mx-auto rounded-2xl my-3 bg-gray-800 sm:px-5 sm:items-center'>
+                        <div className='min-w-0'>
                         <h1 className='font-bold text-lg' > {elem.question}</h1>
                         <br />
                         <div className='text-[#8B949E]'>
@@ -62,13 +62,13 @@ function FAQSection() {
                         }
                         </div>
                         </div>
-                        <button className='font-bold cursor-pointer text-2xl'
+                        <button className='font-bold cursor-pointer text-2xl shrink-0'
                         onClick={ () => EventHandler(idx)}> {active[idx]==='true' ? '-' : '+'}  </button>
                     </div>
                 ))
             }
             </div>
-        </motion.section>
+        </Motion.section>
     );
 }
 

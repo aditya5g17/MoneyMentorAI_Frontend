@@ -13,12 +13,6 @@ const Chatbot = ({ forceOpen = false, onClose }) => {
 
   const chatBodyRef = useRef(null);
 
-
-  const toggleChatbot = () => {
-    setIsOpen(!isOpen);
-  };
-
-
     useEffect(() => {
       if (chatBodyRef.current) {
         // Always scroll to bottom, but with smooth behavior for new messages

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 function Footer() {
@@ -10,7 +10,7 @@ function Footer() {
       })
     
     return (
-        <motion.footer className="bg-gray-900 font-[Poppins] shadow-[0px_0px_20px_rgba(16,24,40,0.9)] text-gray-300 py-10 mt-20"
+        <Motion.footer className="bg-gray-900 font-[Poppins] shadow-[0px_0px_20px_rgba(16,24,40,0.9)] text-gray-300 py-10 mt-16 sm:mt-20"
         ref= {ref}
     initial = {{opacity:0, scale:0.85}}
     animate = {inView ? { opacity:1, scale:1 } : {}}
@@ -52,12 +52,12 @@ function Footer() {
             </div>
 
             <div>
-              <div className='mt-12 font-bold text-gray-300 text-3xl mx-auto text-center pt-6 '>Meet Our Team :)</div>
-                            <div className='flex mt-12 font-bold max-w-[1080px] mx-auto justify-around'>
-                                <p1> Aditya Saini</p1>
-                                <p1> Aman Rizvi </p1>
-                                <p1> Amisha Jindal </p1>
-                                <p1> Arpit Bansal </p1>
+              <div className='mt-12 font-bold text-gray-300 text-2xl mx-auto text-center px-4 pt-6 sm:text-3xl'>Meet Our Team :)</div>
+                            <div className='grid grid-cols-1 gap-3 mt-8 px-6 text-center font-bold max-w-[1080px] mx-auto sm:grid-cols-2 lg:grid-cols-4 lg:mt-12'>
+                                <p>Aditya Saini</p>
+                                <p>Aman Rizvi</p>
+                                <p>Amisha Jindal</p>
+                                <p>Arpit Bansal</p>
               </div>
             </div>
 
@@ -65,7 +65,7 @@ function Footer() {
             <div className="mt-10 border-t border-gray-700 pt-6 text-center text-gray-500 text-sm">
                 &copy; {new Date().getFullYear()} Money Mentor AI. All rights reserved.
             </div>
-        </motion.footer>
+        </Motion.footer>
     );
 }
 

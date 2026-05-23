@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 
 const News = ({ onClose }) => {
   const [newsArticles, setNewsArticles] = useState([]);
@@ -26,21 +26,21 @@ const News = ({ onClose }) => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/80 backdrop-blur-sm">
-      <motion.div
+    <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/80 p-3 backdrop-blur-sm sm:p-6">
+      <Motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
         transition={{ duration: 0.45, ease: 'easeInOut' }}
-        className="bg-[#1f2937] w-[95%] h-[90%] rounded-2xl p-8 relative overflow-hidden flex flex-col border border-gray-600 shadow-2xl"
+        className="bg-[#1f2937] w-full h-[92dvh] rounded-2xl p-4 relative overflow-hidden flex flex-col border border-gray-600 shadow-2xl sm:w-[95%] sm:h-[90%] sm:p-8"
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold z-10"
+          className="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl font-bold z-10 sm:top-4 sm:right-4"
         >
           ✕
         </button>
-        <h2 className="text-4xl text-[#E6EDF3] font-bold mb-8 text-center">
+        <h2 className="text-2xl text-[#E6EDF3] font-bold mb-5 pr-8 text-center sm:text-4xl sm:mb-8">
           Market News
         </h2>
 
@@ -51,7 +51,7 @@ const News = ({ onClose }) => {
         )}
 
         {!loading && !error && newsArticles.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 overflow-y-auto pr-2 custom-scrollbar">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 overflow-y-auto pr-1 custom-scrollbar sm:gap-6 sm:pr-2">
             {newsArticles.map((article, index) => {
               const imageSrc =
                 article.urlToImage ||
@@ -62,7 +62,7 @@ const News = ({ onClose }) => {
                   key={index}
                   className="bg-[#374151] border border-gray-600 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-4 flex flex-col gap-4 h-full"
                 >
-                  <div className="w-full h-48 rounded-lg overflow-hidden bg-[#1f2937] border border-gray-700 flex items-center justify-center">
+                  <div className="w-full h-40 rounded-lg overflow-hidden bg-[#1f2937] border border-gray-700 flex items-center justify-center sm:h-48">
                     <img
                       src={imageSrc}
                       alt={article.title || 'market news'}
@@ -98,7 +98,7 @@ const News = ({ onClose }) => {
             })}
           </div>
         )}
-      </motion.div>
+      </Motion.div>
     </div>
   );
 };

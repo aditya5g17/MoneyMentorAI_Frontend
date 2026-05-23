@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 import StatsSection from './components/Stats';
 import FAQSection from './components/FAQ';
 import { useRef, useState, useEffect } from 'react';
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { NavLink, Routes, Route } from 'react-router-dom';
 import Chatbot from './components/Chatbot';
 import News from './components/News.jsx';
@@ -61,8 +61,8 @@ function App() {
   const [chatBotEnabled, setChatBotEnabled] = useState(false);
   const [showNews, setShowNews] = useState(false);
   return (
-    <div className=' font-[Poppins] '>
-      <div className='' style={cursor}></div>
+    <div className='min-w-0 overflow-x-hidden font-[Poppins]'>
+      <div className='hidden lg:block' style={cursor}></div>
       <div className='bg-no-repeat bg-cover  bg-[url("https://media.istockphoto.com/id/2030192156/photo/global-data-flow-and-connectivity-east-asia.webp?b=1&s=612x612&w=0&k=20&c=igZA6fE1A6qq0jyHDRUAxtbuHeQu2pqiRTdr4t2BPfI=")]'>
         <div className=''>
           <Navbar homeRef={homeRef} workRef={workRef} aboutusRef={aboutusRef} featuresRef={featuresRef} faqRef={faqRef} marketNewsRef={marketNewsRef} /> 
@@ -71,7 +71,7 @@ function App() {
         </div>
       </div>
 
-      <motion.button
+      <Motion.button
         animate={{ 
           scale: [1, 1.08, 1],
         }}
@@ -84,16 +84,16 @@ function App() {
         whileTap={{ scale: 0.95 }}
         style={{
           position: 'fixed',
-          bottom: '24px',
-          right: '24px',
+          bottom: '16px',
+          right: '16px',
           zIndex: 9998
         }}
-        className='w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 text-white shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 flex items-center justify-center cursor-pointer group relative overflow-hidden'
+        className='w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 text-white shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 flex items-center justify-center cursor-pointer group relative overflow-hidden sm:bottom-6 sm:right-6 sm:h-16 sm:w-16'
         onClick={() => setChatBotEnabled(true)}
         aria-label="Open chat"
       >
         {/* Animated background pulse */}
-        <motion.div
+        <Motion.div
           className="absolute inset-0 rounded-full bg-white opacity-20"
           animate={{
             scale: [1, 1.5, 1],
@@ -134,10 +134,10 @@ function App() {
           <circle cx="12" cy="6" r="1" fill="white"/>
           <line x1="12" y1="4" x2="12" y2="6" stroke="white" strokeWidth="2" strokeLinecap="round"/>
         </svg>
-      </motion.button>  
+      </Motion.button>  
       {
         chatBotEnabled && 
-        ( <div className='fixed chatbot-shell' style={{ bottom: '20px', right: '24px', zIndex: 9999 }}>
+        ( <div className='fixed chatbot-shell' style={{ zIndex: 9999 }}>
           <Chatbot forceOpen={true} onClose={() => setChatBotEnabled(false)} />
           </div>
         )

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { useInView } from 'react-intersection-observer';
 
 function Work() {
@@ -10,19 +10,19 @@ function Work() {
   })
 
   return (
-    <motion.section 
+    <Motion.section 
     ref= {ref}
     initial = {{opacity:0, scale:0.85}}
     animate = {inView ? { opacity:1, scale:1 } : {}}
-    transition={{duration:1, ease:'anticipate'}}className="py-16 mt-8 max-w-[1080px] font-[Poppins] mx-auto text-[#E6EDF3]">
+    transition={{duration:1, ease:'anticipate'}}className="py-12 mt-8 max-w-[1080px] font-[Poppins] mx-auto px-4 text-[#E6EDF3] sm:py-16">
        <div className='h-2 w-full border-b-[0.5px] border-b-[#374151]'></div>
       <div className="max-w-6xl mx-auto px-4  mt-12">
         
-        <h2 className="text-4xl font-bold text-center mb-6">
+        <h2 className="text-3xl font-bold text-center mb-6 sm:text-4xl">
           How It Works
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-8 mt-8">
+        <div className="grid grid-cols-1 gap-8 mt-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="flex flex-col items-center text-center">
             <div className="bg-white/10 backdrop-blur-md border border-[#30363D] rounded-full w-24 h-24 flex items-center justify-center mb-4 overflow-hidden">
               <img 
@@ -82,7 +82,7 @@ function Work() {
         </div>
 
       </div>
-    </motion.section>
+    </Motion.section>
   )
 }
 

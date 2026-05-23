@@ -1,6 +1,6 @@
 import React from 'react'
 import{ app } from '../firebase/app.js'
-import { getAuth,createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import  { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -27,21 +27,21 @@ function Signin() {
   const [password, setPassword] = useState('');
 
   return (
-    <div>
-      <div className="flex flex-col p-4 mt-4">
-          <span className="relative flex items-center justify-start mt-20 space-x-2"><i className="fa-solid fa-envelope py-2 px-2"></i>
-          <input className="w-[300px] focus:outline-[#cac7c7] my-4 active:outline-[#f0f0f0] py-2 px-2 rounded-xl text-lg bg-[#d6d1d1] mt-2 " 
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-4 p-2 mt-8 sm:p-4 sm:mt-14">
+          <span className="relative flex items-center justify-start space-x-2"><i className="fa-solid fa-envelope py-2 px-2"></i>
+          <input className="w-full max-w-[360px] focus:outline-[#cac7c7] active:outline-[#f0f0f0] py-2 px-2 rounded-xl text-lg bg-[#d6d1d1]" 
           type="email" id="email" placeholder="Email address" required 
           value={email}
           onChange={(e)=> setEmail(e.target.value)}/></span>
           <span className="relative flex items-center justify-start space-x-2"><i className="fa-solid fa-lock py-2 px-2 "></i>
-          <input className="w-[300px] focus:outline-[#cac7c7] py-2 mb-0 px-2 rounded-xl text-lg bg-[#d6d1d1] mt-2 " 
+          <input className="w-full max-w-[360px] focus:outline-[#cac7c7] py-2 mb-0 px-2 rounded-xl text-lg bg-[#d6d1d1]" 
           type="password" id="password" placeholder="Password" required 
           value={password}
           onChange={(e)=> setPassword(e.target.value)}/></span>
         </div>
-        <button type="submit" id="submit-btn" className="ml-20 p-3 mb-2 fixed bottom-12
-          hover:scale-110 transition-transform duration-100 rounded-2xl bg-green-900 text-center text-white mt-10 w-[15%]"
+        <button type="submit" id="submit-btn" className="w-full max-w-[220px] p-3 mx-auto
+          hover:scale-105 transition-transform duration-100 rounded-2xl bg-green-900 text-center text-white"
           onClick={eventHandler}>continue
         </button>
     
